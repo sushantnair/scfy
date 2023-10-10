@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>{{page}}</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2>Add User Information</h2>
+            <hr>
+            <div class="mb-3">
+              <label for="exampleInputEmail1">User Name</label>
+              <input name="receipe_name" required ="text" class="form-control" >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" >User Description</label>
+              <textarea name="receipe_description" required class="form-control"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1">User Image</label>
+                <input name="receipe_image" type="file" class="form-control" >
+            </div>
+            <button type="submit" class="btn btn-success">Create Account</button>
+        </form>
+    </div>
+    
+</body>
+</html>
