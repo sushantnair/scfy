@@ -31,11 +31,14 @@ class UserTable(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['email']
 
     def __str__(self):
-        return self.uname
+        return f"User ID: {self.usrid}, User Name: {self.uname}, Email: {self.email}"
 
 class Page(models.Model):
     pgid = models.IntegerField()
     pgnm = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"Page ID: {self.pgid}, Page Name: {self.pgnm}"
 
 class Code(models.Model):
     pgid = models.IntegerField()                              # Page id
@@ -51,3 +54,6 @@ class Code(models.Model):
 class Contributors(models.Model):
     userid = models.IntegerField()
     codeid = models.IntegerField()
+
+    def __str__(self):
+        return f"User ID: {self.userid}, Code ID: {self.codeid}"
