@@ -38,10 +38,11 @@ class Page(models.Model):
     pgnm = models.CharField(max_length=100)
 
 class Code(models.Model):
-    pgid = models.IntegerField()                # Page id
-    code = models.TextField()                   # Actual code to be displayed
-    cdid = models.IntegerField()                # Code id
-    show = models.BooleanField(default=False)   # Show flag
+    pgid = models.IntegerField()                              # Page id
+    code = models.TextField()                                 # Actual code to be displayed
+    cdid = models.IntegerField()                              # Code id
+    lang = models.CharField(max_length=50, default=None)      # language of code, e.g., Python, Java
+    show = models.BooleanField(default=False)                 # Show flag
     # Show flag is used as for a particular page, there can be multiple codes which are 
     # contributed by multiple users. But we want to show only one code in the page.
     # So by default the code contributed by a user won't be shown immediately on the page.

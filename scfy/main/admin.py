@@ -11,7 +11,7 @@ class PageDisplay(admin.ModelAdmin):
 admin.site.register(Page, PageDisplay)
 
 class CodeDisplay(admin.ModelAdmin):
-    list_display = ('pgid', 'code', 'cdid', 'show')
+    list_display = ('pgid', 'code', 'cdid', 'lang', 'show')
 admin.site.register(Code, CodeDisplay)
 
 class ContributorsDisplay(admin.ModelAdmin):
