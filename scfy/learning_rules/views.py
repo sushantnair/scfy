@@ -37,3 +37,4 @@ def allpages(request):
     return render(request, "learning_rules/index.html", {
         "learning_rules": learning_rules
     }) 
+ 
