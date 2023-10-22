@@ -34,7 +34,12 @@ def LoginPage(request):
         user = authenticate(request, uname=username, password=pass1)
         if user is not None:
             login(request, user)
-            return render(request, 'main/home.html', {"uname": username})
+            request.session['uname'] = username
+            user_details = UserTable.objects.filter(uname=username)
+            for user_detail in user_details:
+                request.session['email'] = user_detail.email
+                request.session['usrid'] = user_detail.usrid
+            return render(request, 'main/home.html', {"uname": request.session.get('uname'), "email": request.session.get('email'), "usrid": request.session.get('usrid')})
         else:
             return HttpResponse("Username or Password is incorrect!!!")
     else:
@@ -43,3 +48,9 @@ def LoginPage(request):
 def LogoutPage(request):
     logout(request)
     return redirect('login')
+
+def Contribute(request):
+    return render(request, "main/contribute.html", {"uname": request.session.get('uname'), "email": request.session.get('email'), "usrid": request.session.get('usrid')})
+
+def Dashboard(request):
+    return render(request, "main/dashboard.html", {"uname": request.session.get('uname'), "email": request.session.get('email'), "usrid": request.session.get('usrid')})
