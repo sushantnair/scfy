@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 #from django.contrib.auth.models import User
-from main.models import UserTable
+from main.models import UserTable, Code, Contributors
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
@@ -53,4 +53,35 @@ def Contribute(request):
     return render(request, "main/contribute.html", {"uname": request.session.get('uname'), "email": request.session.get('email'), "usrid": request.session.get('usrid')})
 
 def Dashboard(request):
-    return render(request, "main/dashboard.html", {"uname": request.session.get('uname'), "email": request.session.get('email'), "usrid": request.session.get('usrid')})
+    # Get data from Contributors table
+    codes_contributed = Contributors.objects.filter(userid=request.session.get('usrid'))
+    #   USERID  CODEID  --- Collectively, table is codes_contributed
+    #   1       1       --- Individually, a row is code_contributed
+    #   1       2
+    # Get all codes contributed by a particular user in a single variable
+    code_data = Code.objects.filter(cdid__in=[code_contributed.codeid for code_contributed in codes_contributed])
+    # Create a list to store merged data
+    merged_data = list()
+    # Extracting data for each code contributed
+    for code_contributed in codes_contributed:
+        code_record = code_data.filter(cdid=code_contributed.codeid).first()
+        if code_record:
+            # Merge data from both tables
+            merged_data.append({
+                "userid": code_contributed.userid,
+                "codeid": code_contributed.codeid,
+                "pgid": code_record.pgid,
+                "code": code_record.code,
+                "lang": code_record.lang,
+                "show": code_record.show,
+            })
+        else:
+            merged_data.append({
+                "userid": code_contributed.userid,
+                "codeid": code_contributed.codeid,
+            })
+
+    return render(request, "main/dashboard.html", {"uname": request.session.get('uname'), 
+                                                   "email": request.session.get('email'), 
+                                                   "usrid": request.session.get('usrid'),
+                                                   "c_lst": merged_data})

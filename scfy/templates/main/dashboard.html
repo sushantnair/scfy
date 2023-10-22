@@ -1,9 +1,46 @@
 <html>
     <head>
         <title>{{ uname }} Dashboard</title>
+        <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+    </style>
     </head>
     <body>
         <h1>Welcome, {{ uname }} to your Dashboard</h1>
         <h2>Your email and User ID are {{ email }} and {{ usrid }} respectively.</h2>
+        <h3>Codes contributed by you</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Code ID</th>
+                    <th>Page ID</th>
+                    <th>Code</th>
+                    <th>Language</th>
+                    <th>Show</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in c_lst %}
+                    <tr>
+                        <td>{{ data.codeid }}</td>
+                        <td>{{ data.pgid }}</td>
+                        <td>{{ data.code }}</td>
+                        <td>{{ data.lang }}</td>
+                        <td>{{ data.show }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </body>
 </html>
