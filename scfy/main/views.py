@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 #from django.contrib.auth.models import User
-from main.models import UserTable, Code, Contributors
+from main.models import UserTable, Code, Contributors, Page
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
@@ -8,8 +8,22 @@ from django.contrib.auth.hashers import make_password
 # Create your views here.
 @login_required(login_url='login')
 def HomePage(request):
-    return render(request, 'main/home.html')
- 
+    lr_pages_data = Page.objects.all()
+    # ----- lr_pages_data -----
+    # lr_pages_id   lr_pages_nm
+    # PGID          PGNM
+    # 1             Perceptron
+    # 2             Delta
+    # ...
+    lr_pages_id = list()
+    lr_pages_nm = list()
+    for lr_page_data in lr_pages_data:
+        lr_page_id = lr_page_data.pgid
+        lr_pages_id.append(lr_page_id)
+        lr_page_nm = lr_page_data.pgnm
+        lr_pages_nm.append(lr_page_nm)
+    return render(request, 'main/home.html', {"lr_pages_nm": lr_pages_nm})
+
 def SignupPage(request):
     if request.method == 'POST':
         uname = request.POST.get('username')
@@ -39,7 +53,7 @@ def LoginPage(request):
             for user_detail in user_details:
                 request.session['email'] = user_detail.email
                 request.session['usrid'] = user_detail.usrid
-            return render(request, 'main/home.html', {"uname": request.session.get('uname'), "email": request.session.get('email'), "usrid": request.session.get('usrid')})
+            return redirect('home')
         else:
             return HttpResponse("Username or Password is incorrect!!!")
     else:
@@ -49,8 +63,32 @@ def LogoutPage(request):
     logout(request)
     return redirect('login')
 
-def Contribute(request):
-    return render(request, "main/contribute.html", {"uname": request.session.get('uname'), "email": request.session.get('email'), "usrid": request.session.get('usrid')})
+def Contribute(request, rule_name):
+    if request.method == 'POST':
+        # Obtaining pgid value (1/5)
+        lr_page_dataset = Page.objects.filter(pgnm=rule_name)
+        for lr_page_data in lr_page_dataset:
+            lr_page_id = lr_page_data.pgid
+        # Obtaining code (2/5)
+        code = request.POST.get('code')
+        # Creating Code ID (3/5)
+        codecount = Code.objects.count()
+        cdid = codecount + 1
+        # Setting Show (4/5)
+        show = False
+        # Obtaining Language (5/5)
+        lang = request.POST.get('lang')
+        # Updating Code table
+        code_data = Code(pgid=lr_page_id, code=code, cdid=cdid, lang=lang, show=show)
+        code_data.save()
+        # Updating Contributors table
+        contributor_data = Contributors(userid=request.session.get('usrid'), codeid=cdid)
+        contributor_data.save()
+        return redirect('home')
+    return render(request, "main/contribute.html", {"rule_name": rule_name, 
+                                                    "uname": request.session.get('uname'), 
+                                                    "email": request.session.get('email'), 
+                                                    "usrid": request.session.get('usrid')})
 
 def Dashboard(request):
     # Get data from Contributors table

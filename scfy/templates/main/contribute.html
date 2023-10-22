@@ -3,13 +3,15 @@
         <title>Contribute Your Code</title>
     </head>
     <body>
-        <h1>We are happy you want to contribute to the code!</h1>
+        <h1>We are happy you want to contribute to the code for {{ rule_name }} page!</h1>
         <form action="" method="post">
             {% csrf_token %}
             <h1>Enter your code below</h1>
             <textarea rows="30" cols="150" name="code" id="code">
                 Enter your code...
             </textarea>
+            <br>
+            Enter language: <input type="text" name="lang" id="lang">
             <br>
             <button type="submit">Submit Code</button>
         </form>

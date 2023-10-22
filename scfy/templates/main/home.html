@@ -3,7 +3,12 @@
         <title>Sofy Computing For You!</title>
     </head>
     <body>
-        <h1>Welcome, {{ uname }} to Soft Computing For You</h1>
-        <h2>Email: {{email}}, User ID: {{usrid}}</h2>
+        <h1>Welcome to Soft Computing For You</h1>
+        <h3>Learning Rules Available</h3>
+        <ul>
+            {% for lr_page_nm in lr_pages_nm %}
+                <li><a href="http://127.0.0.1:8000/learning_rules/{{lr_page_nm}}">{{ lr_page_nm }}</a></li>
+            {% endfor %}
+        </ul>
     </body> 
 </html>

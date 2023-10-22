@@ -8,5 +8,12 @@
     <body>
         <h1>{{ rule | title }}Learning Rule</h1>
         <h2>Hello, {{desc}}</h2>
+        <h3>Code</h3>
+        <p>
+            {% for code_line in code %}
+                {{ code_line }}
+            {% endfor %}
+        </p>
+        <button><a href="{% url 'contribute' rule_name=rule %}" style="color:black">Contribute</a></button>
     </body>
 </html>  
