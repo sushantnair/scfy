@@ -1,49 +1,91 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>{{ uname }} Dashboard</title>
-        <style>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            background-color: #080710;
+            color: #f09819;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+        h2, h3 {
+            text-align: center;
+            margin-top: 20px;
+        }
         table {
             border-collapse: collapse;
-            width: 100%;
+            width: 95%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            margin: 20px auto;
         }
         th, td {
             border: 1px solid #ccc;
+            border-radius: 5px;
             padding: 8px;
             text-align: left;
         }
         tr:nth-child(odd) {
             background-color: #f2f2f2;
         }
-        pre {
-            white-space: pre-wrap; /* This CSS property preserves formatting and line breaks */
-        }
+    .user-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 92%;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        margin: 20px auto;
+    }
+    .user-name {
+        font-size: 16px;
+    }
+    .user-email {
+        font-size: 16px;
+    }
     </style>
-    </head>
-    <body>
-        <h1>Welcome, {{ uname }} to your Dashboard</h1>
-        <h2>Your email and User ID are {{ email }} and {{ usrid }} respectively.</h2>
-        <h3>Codes contributed by you</h3>
-        <table>
-            <thead>
+</head>
+<body>
+    <h1>Welcome, {{ uname|capfirst }}</h1>
+    <div class="user-box">
+        <div class="user-name">Username: {{ uname|capfirst }}</div>
+        <div class="user-email">Email: {{ email }}</div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Code ID</th>
+                <th>Page ID</th>
+                <th>Code</th>
+                <th>Language</th>
+                <th>Show</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in c_lst %}
                 <tr>
-                    <th>Code ID</th>
-                    <th>Page ID</th>
-                    <th>Code</th>
-                    <th>Language</th>
-                    <th>Show</th>
+                    <td>{{ data.codeid }}</td>
+                    <td>{{ data.pgid }}</td>
+                    <td>{{ data.code }}</td>
+                    <td>{{ data.lang }}</td>
+                    <td>{{ data.show }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for data in c_lst %}
-                    <tr>
-                        <td>{{ data.codeid }}</td>
-                        <td>{{ data.pgid }}</td>
-                        <td><pre>{{ data.code|safe }}</pre></td>
-                        <td>{{ data.lang }}</td>
-                        <td>{{ data.show }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </body>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
 </html>

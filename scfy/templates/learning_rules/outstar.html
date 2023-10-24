@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Perceptron Learning Rule</title>
+    <title>Outstar Learning Rule</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -57,25 +57,25 @@
 </head>
 <body>
     <header>
-        <h1>Perceptron Learning Rule</h1>
+        <h1>Outstar Learning Rule</h1>
     </header>
 
     <main>
         <p>
-            The Perceptron Learning Rule, often considered the cornerstone of neural network models and an essential concept in the field of machine learning, represents a fundamental algorithm for binary classification tasks. Conceived by Frank Rosenblatt in the late 1950s, the Perceptron is a simple yet powerful model inspired by the way biological neurons function in the human brain. It serves as a building block for more complex artificial neural networks.
+            The Outstar Learning Rule is a concept primarily associated with competitive neural networks, which are a class of artificial neural networks designed to model the competitive interactions and self-organizing properties observed in biological neural systems. This learning rule, sometimes referred to as the "winner-takes-all" rule, plays a pivotal role in training competitive networks, allowing them to develop a representation of input patterns based on competition among their neurons.
             <br>
             <br>
-At its core, the Perceptron is a binary linear classifier. It processes input features and applies a set of weights to these features to make a decision about which of two classes an input belongs to. The key idea behind the Perceptron is to find a linear decision boundary that separates data points of one class from those of another. When an input vector is passed through the Perceptron, it calculates the weighted sum of the inputs and applies an activation function (usually a step function). If the result is above a certain threshold, it classifies the input as one class; otherwise, it classifies it as the other class.
+            In competitive neural networks, the goal is to identify the most relevant or salient input pattern among a group of competing neurons. The Outstar Learning Rule is used to adjust the weights of the output neurons in such a way that the neuron with the highest activation or response to a given input becomes the "winner" and is responsible for representing that input pattern. The weights to the winning neuron are modified to improve its response to similar inputs in the future.
             <br>
             <br>
-The real power of the Perceptron Learning Rule lies in its ability to learn from data. During training, the Perceptron adjusts its weights based on the observed classification errors. It iteratively fine-tunes these weights to minimize classification errors until convergence. This process of weight adjustment allows the Perceptron to adapt to the underlying patterns in the data and learn the optimal decision boundary that separates the two classes.
+            This learning rule reflects the concept of competitive learning, where neurons compete to respond to specific input patterns, and only the strongest neuron is allowed to represent the input. The Outstar Learning Rule is particularly useful in scenarios where unsupervised learning is required, and the network needs to discover the underlying structure or clusters within the input data. While competitive networks are not as commonly used as other neural network architectures like feedforward or recurrent networks, the Outstar Learning Rule provides a valuable framework for tasks such as clustering, feature extraction, and pattern recognition, where competition among neurons is a central organizing principle.
 <br>
 <br>
 Example Code:        
 </p>
         <code>
 from sklearn.datasets import make_blobs
-from sklearn.linear_model import Perceptron
+from sklearn.linear_model import Outstar
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
@@ -85,8 +85,8 @@ X, y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=0)
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Create and train a Perceptron classifier
-clf = Perceptron(max_iter=100, random_state=0)
+# Create and train a Outstar classifier
+clf = Outstar(max_iter=100, random_state=0)
 clf.fit(X_train, y_train)
 
 # Make predictions on the test data
@@ -109,7 +109,7 @@ xx, yy = plt.meshgrid(
 Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()])
 Z = Z.reshape(xx.shape)
 plt.contour(xx, yy, Z, colors='k', levels=[0], linestyles=['-'])
-plt.title('Perceptron Decision Boundary')
+plt.title('Outstar Decision Boundary')
 plt.show()
 
         </code>

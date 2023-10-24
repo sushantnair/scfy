@@ -7,7 +7,7 @@
     <body>
         <ul>
             {% for learning_rule in learning_rules %}
-                <li><a href="{% url "lr_name" learning_rule %}">{{ learning_rule | title }}</a></li>
+                <li><a href="{% url 'lr_name' learning_rule %}">{{ learning_rule | title }}</a></li>
             {% endfor %}
         </ul> 
     </body>

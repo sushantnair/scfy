@@ -5,6 +5,7 @@ learning_rules_dict = {
     "delta": "Delta Learning Rule",
     "hebbian": "Hebbian Learning Rule",
     "widrowhoff": "Widrow-Hoff Learning Rule",
+    "outstar": "Outstar Learning Rule"
 } 
 
 # Create your views here.
@@ -20,7 +21,7 @@ def learnrule(request, lr_name):
             # Extract the code content from code_objects
             code_content = [code.code for code in code_objects]
             return render(request, "learning_rules/perceptron.html", {
-                "desc": lr_desc, "rule": lr_name, "code": code_content[0],
+                "desc": lr_desc, "rule": lr_name, "code": code_content,
             })
         elif lr_name == "delta":
             return render(request, "learning_rules/delta.html", {
@@ -32,6 +33,10 @@ def learnrule(request, lr_name):
             })
         elif lr_name == "widrowhoff":
             return render(request, "learning_rules/widrowhoff.html", {
+                "desc": lr_desc, "rule": lr_name,
+            })
+        elif lr_name == "outstar":
+            return render(request, "learning_rules/outstar.html", {
                 "desc": lr_desc, "rule": lr_name,
             })
         else:

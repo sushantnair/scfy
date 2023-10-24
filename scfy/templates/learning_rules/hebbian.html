@@ -1,12 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ rule | title }} Learning Rule</title>
-    </head>
-    <body>
-        <h1>{{ rule | title }}Learning Rule</h1>
-        <h2>Hello, {{desc}}</h2>
-    </body>
-</html>  
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Hebbian Learning Rule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: black;
+            color: #f09819;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 20px;
+        }
+
+        code {
+        font-family: Consolas, monospace;
+        background-color: #f4f4f4;
+        padding: 15px;
+        border: 1px solid #ccc;
+        display: block;
+        margin: 10px 50px;
+        white-space: pre-wrap; /* Wrap long lines */
+        overflow-x: auto; /* Add horizontal scroll if needed */
+        color: #333; /* Text color for the code */
+    }
+        /* Style for the logout button */
+    .logout-button {
+        background-color: #f44336; /* Red color */
+        color: #fff;
+        border-radius: 5px;
+        margin: 10px 50px;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    /* Style for the logout button on hover */
+    .logout-button:hover {
+        background-color: #d32f2f; /* Darker red color on hover */
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hebbian Learning Rule</h1>
+    </header>
+
+    <main>
+        <p>
+            Hebbian learning, named after the Canadian psychologist Donald Hebb, is a fundamental concept in the field of neuroscience and artificial neural networks. This learning rule, often summarized by the phrase "cells that fire together wire together," is a foundational principle for understanding how the connections between neurons in the brain are strengthened through experience. It represents a crucial mechanism behind synaptic plasticity, which is the brain's ability to rewire itself based on learning and experience.
+            <br>
+            <br>
+            In Hebbian learning, the fundamental idea is that when two neurons are active at the same time and are involved in the same task or experience, the synaptic connection between them is strengthened. This reinforcement of synaptic connections is thought to underlie the formation of memory and the adaptation of the neural network to environmental stimuli. Hebbian learning is a mechanism that allows the brain to enhance connections that are repeatedly active, promoting the storage and retrieval of information.
+            <br>
+            <br>
+            While Hebbian learning is a foundational concept in neuroscience, it has also influenced the development of artificial neural networks. In the context of artificial intelligence and machine learning, variants of Hebbian learning have been used to train models to recognize patterns and learn from data. These algorithms often adapt and strengthen the connections or weights between artificial neurons based on the co-occurrence of input patterns. While Hebbian learning has its limitations, especially in complex learning tasks, it provides a valuable starting point for understanding how networks can self-organize and adapt to their input, both in biological and artificial systems.<br>
+<br>
+Example Code:        
+</p>
+        <code>
+from sklearn.datasets import make_blobs
+from sklearn.linear_model import Hebbian
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+
+# Generate synthetic data
+X, y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=0)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and train a Hebbian classifier
+clf = Hebbian(max_iter=100, random_state=0)
+clf.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = clf.predict(X_test)
+
+# Calculate the accuracy of the model
+accuracy = (y_pred == y_test).mean()
+print(f'Accuracy: {accuracy * 100:.2f}%')
+
+# Plot the data points and decision boundary
+plt.figure(figsize=(8, 6))
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
+ax = plt.gca()
+xlim = ax.get_xlim()
+ylim = ax.get_ylim()
+xx, yy = plt.meshgrid(
+    np.linspace(xlim[0], xlim[1], 50),
+    np.linspace(ylim[0], ylim[1], 50)
+)
+Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+plt.contour(xx, yy, Z, colors='k', levels=[0], linestyles=['-'])
+plt.title('Hebbian Decision Boundary')
+plt.show()
+
+        </code>
+        <br>
+        <br>
+        <br>
+        <center><a href="{% url 'contribute' rule_name=rule %}" class="logout-button">Contribute to the code</a></center>
+        <br>
+        <br>
+    </main>
+</body>
+</html>
