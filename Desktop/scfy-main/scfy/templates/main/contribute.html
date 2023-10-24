@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Contribute Your Code</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            align-items: center;
+        }
+
+        header {
+            background-color: black;
+            color: #f09819;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 70%; /* Adjust the width as needed */
+            text-align: left;
+            align-items: center;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button, #logout-button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover, #logout-button:hover {
+            background-color: #0056b3;
+        }
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+        /* Style for the select element */
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1>Thank you for your contribution to the {{ rule_name|capfirst }} Learning Rule page!</h1>
+    </header>
+    <br>
+    <br>
+    <center>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="lang">Select language :</label>
+        <select name="lang" id="lang">
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="java">Java</option>
+            <option value="c++">C++</option>
+            <!-- Add more programming languages as needed -->
+        </select>
+        <br>
+        <br>
+        <label for="lang">Enter your code below</label>
+        <textarea rows="10" cols="50" name="code" id="code" placeholder="Enter your code..."></textarea>
+        <div class="button-container">
+            <button type="submit">Submit Code</button>
+            <a href="{% url 'dashboard' %}"><button id="logout-button" type="button">Go To Dashboard</button></a>
+        </div>
+    </form>
+    </center>
+</body>
+</html>
