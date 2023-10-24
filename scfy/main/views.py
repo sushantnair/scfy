@@ -106,7 +106,6 @@ def Dashboard(request):
         if code_record:
             # Merge data from both tables
             merged_data.append({
-                "userid": code_contributed.userid,
                 "codeid": code_contributed.codeid,
                 "pgid": code_record.pgid,
                 "code": code_record.code,
@@ -115,7 +114,6 @@ def Dashboard(request):
             })
         else:
             merged_data.append({
-                "userid": code_contributed.userid,
                 "codeid": code_contributed.codeid,
             })
 

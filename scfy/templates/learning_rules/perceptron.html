@@ -4,18 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ rule | title }} Learning Rule</title>
+        <style>
+            pre {
+                white-space: pre-wrap; /* This CSS property preserves formatting and line breaks */
+            }
+            p {
+                border: solid 2px black;
+                size: 200px;
+            }
+        </style>
     </head>
     <body>
         <h1>{{ rule | title }}Learning Rule</h1>
         <h2>Hello, {{desc}}</h2>
         <h3>Code</h3>
         <p>
-            {% for code_line in code %}
-                {{ code_line }}
-                <br>
-                <!-- an edit for demonstration -->
-                <!-- trying again... -->
-            {% endfor %}
+            <pre>{{code|safe}}</pre>
         </p>
         <button><a href="{% url 'contribute' rule_name=rule %}" style="color:black">Contribute</a></button>
     </body>

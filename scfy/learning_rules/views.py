@@ -20,7 +20,7 @@ def learnrule(request, lr_name):
             # Extract the code content from code_objects
             code_content = [code.code for code in code_objects]
             return render(request, "learning_rules/perceptron.html", {
-                "desc": lr_desc, "rule": lr_name, "code": code_content,
+                "desc": lr_desc, "rule": lr_name, "code": code_content[0],
             })
         elif lr_name == "delta":
             return render(request, "learning_rules/delta.html", {
