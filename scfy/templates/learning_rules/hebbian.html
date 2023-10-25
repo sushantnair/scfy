@@ -27,6 +27,9 @@
             font-size: 18px;
             margin: 20px;
         }
+        pre {
+            white-space: pre-wrap; /* This CSS property preserves formatting and line breaks */
+        }
 
         code {
         font-family: Consolas, monospace;
@@ -72,46 +75,7 @@
 <br>
 Example Code:        
 </p>
-        <code>
-from sklearn.datasets import make_blobs
-from sklearn.linear_model import Hebbian
-from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
-
-# Generate synthetic data
-X, y = make_blobs(n_samples=100, n_features=2, centers=2, random_state=0)
-
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Create and train a Hebbian classifier
-clf = Hebbian(max_iter=100, random_state=0)
-clf.fit(X_train, y_train)
-
-# Make predictions on the test data
-y_pred = clf.predict(X_test)
-
-# Calculate the accuracy of the model
-accuracy = (y_pred == y_test).mean()
-print(f'Accuracy: {accuracy * 100:.2f}%')
-
-# Plot the data points and decision boundary
-plt.figure(figsize=(8, 6))
-plt.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.Paired)
-ax = plt.gca()
-xlim = ax.get_xlim()
-ylim = ax.get_ylim()
-xx, yy = plt.meshgrid(
-    np.linspace(xlim[0], xlim[1], 50),
-    np.linspace(ylim[0], ylim[1], 50)
-)
-Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()])
-Z = Z.reshape(xx.shape)
-plt.contour(xx, yy, Z, colors='k', levels=[0], linestyles=['-'])
-plt.title('Hebbian Decision Boundary')
-plt.show()
-
-        </code>
+<code><pre> {{ code|safe}} </pre></code>
         <br>
         <br>
         <br>

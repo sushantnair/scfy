@@ -40,6 +40,9 @@
         tr:nth-child(odd) {
             background-color: #f2f2f2;
         }
+        pre {
+            white-space: pre-wrap; /* This CSS property preserves formatting and line breaks */
+        }
     .user-box {
         display: flex;
         justify-content: space-between;
@@ -80,7 +83,7 @@
                 <tr>
                     <td>{{ data.codeid }}</td>
                     <td>{{ data.pgid }}</td>
-                    <td>{{ data.code }}</td>
+                    <td><pre>{{ data.code|safe }}</pre></td>
                     <td>{{ data.lang }}</td>
                     <td>{{ data.show }}</td>
                 </tr>
