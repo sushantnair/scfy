@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "739108990298",
+    "project_id": "somato-81238",
+    "storage_bucket": "somato-81238.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739108990298:android:ca59556fa7ab4e1a71d763",
+        "android_client_info": {
+          "package_name": "com.ly_btech_project.somato_flutter_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmoPa8E2wyjvy0c3xgbNEHQifkQYeMs70"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
