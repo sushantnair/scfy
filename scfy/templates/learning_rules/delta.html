@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Delta Learning Rule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: black;
+            color: #f09819;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 20px;
+        }
+        pre {
+            white-space: pre-wrap; /* This CSS property preserves formatting and line breaks */
+        }
+
+        code {
+        font-family: Consolas, monospace;
+        background-color: #f4f4f4;
+        padding: 15px;
+        border: 1px solid #ccc;
+        display: block;
+        margin: 10px 50px;
+        white-space: pre-wrap; /* Wrap long lines */
+        overflow-x: auto; /* Add horizontal scroll if needed */
+        color: #333; /* Text color for the code */
+    }
+        /* Style for the logout button */
+    .logout-button {
+        background-color: #f44336; /* Red color */
+        color: #fff;
+        border-radius: 5px;
+        margin: 10px 50px;
+        padding: 10px;
+        text-decoration: none;
+    }
+
+    /* Style for the logout button on hover */
+    .logout-button:hover {
+        background-color: #d32f2f; /* Darker red color on hover */
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Delta Learning Rule</h1>
+    </header>
+
+    <main>
+        <p>
+            The Delta Learning Rule, also known as the Delta Rule or the Widrow-Hoff Delta Rule, is a fundamental concept in the realm of artificial neural networks and machine learning. It is named after its co-developer Bernard Widrow, who, along with his graduate student Ted Hoff, made significant contributions to the field of adaptive learning in the early 1960s. The Delta Learning Rule primarily pertains to supervised learning, and it is commonly employed in training single-layer feedforward neural networks, particularly the Perceptron.
+            <br>
+            <br>
+            At its core, the Delta Learning Rule is a mechanism for updating the weights of a neural network based on the error between the network's output and the target value. The rule leverages the gradient of this error with respect to the weights to iteratively adjust the weights in the direction that minimizes the error. The objective is to bring the network's predictions as close as possible to the desired or target outputs. This process effectively allows the network to "learn" from its training data, making it a valuable tool for solving binary classification and pattern recognition tasks.
+            <br>
+            <br>   
+            The Delta Learning Rule's simplicity and intuitiveness make it a foundational concept in the world of machine learning. While it primarily applies to single-layer networks and linear models, its fundamental principles serve as a stepping stone for understanding more complex training algorithms in multi-layer neural networks, including the backpropagation algorithm for deep learning models. Despite its limitations, the Delta Learning Rule's core concept of adjusting weights to minimize error is integral to the broader landscape of artificial intelligence and machine learning, as it underlies the training of various neural network architectures and has contributed significantly to the advancement of the field.<br>
+<br>
+<br>
+Example Code:        
+</p>
+<code><pre> {{ code|safe}} </pre></code>
+        <br>
+        <br>
+        <br>
+        <center><a href="{% url 'contribute' rule_name=rule %}" class="logout-button">Contribute to the code</a></center>
+        <br>
+        <br>
+    </main>
+</body>
+</html>
